@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Happy 2nd Anniversary</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg1:#efe7da; --bg2:#e6dccb; --pink:#c49a8a; --pink-d:#9c6f60; --purple:#ad957c; --purple-d:#7a6150;
+  --ink:#4f3f33; --ink-soft:#8a7766; --card:#fffaf2e6; --line:#e5d9c6; --cream:#fdf9f2;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  font-family:"Noto Serif",Georgia,serif; color:var(--ink); min-height:100vh;
+  background-color:#ece4d6;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .42 0 0 0 0 .33 0 0 0 .5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='c'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.35' numOctaves='2' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .98 0 0 0 0 .94 0 0 0 -2.2 1.25'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23c)'/%3E%3C/svg%3E"),linear-gradient(160deg,var(--bg1) 0%,#f3ece1 50%,var(--bg2) 100%);
+  background-attachment:fixed;
+  overflow-x:hidden;
+}
+h1,h2,h3,.script{font-family:"Noto Serif",Georgia,serif;font-weight:700;letter-spacing:-.01em}
+button{font-family:inherit}
+a{color:inherit}
+
+/* floating hearts */
+.sky{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.sky span{position:absolute;bottom:-40px;color:var(--pink);opacity:.35;animation:rise linear infinite}
+@keyframes rise{to{transform:translateY(-115vh) rotate(25deg);opacity:0}}
+
+/* paper grain on cards */
+.card,.paper,.reply,.frame,.counter div,nav{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .42 0 0 0 0 .33 0 0 0 .28 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E") !important;background-repeat:repeat}
+.paper{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .42 0 0 0 0 .33 0 0 0 .28 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),repeating-linear-gradient(transparent 0 27px,#ece1d0 27px 28px) !important;background-position:0 0,0 6px !important}
+
+/* stickers */
+.stickers{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.stk{position:absolute;filter:drop-shadow(2px 0 #fff) drop-shadow(-2px 0 #fff) drop-shadow(0 2px #fff) drop-shadow(0 -2px #fff) drop-shadow(0 4px 5px #6b553f33);animation:wob 6s ease-in-out infinite}
+@keyframes wob{50%{translate:0 -6px}}
+.ph{position:relative}
+.ph .deco{position:absolute;width:62px;top:-8px;filter:drop-shadow(2px 0 #fff) drop-shadow(-2px 0 #fff) drop-shadow(0 2px #fff) drop-shadow(0 -2px #fff) drop-shadow(0 4px 5px #6b553f33)}
+@media (max-width:700px){.stk.far{display:none}.stk{opacity:.75}.ph .deco{width:44px}}
+
+/* navigation */
+nav{position:sticky;top:0;z-index:20;display:flex;justify-content:center;gap:6px;flex-wrap:wrap;
+  padding:12px 10px;background:#fbf6eeb8;backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav a{text-decoration:none;padding:8px 16px;border-radius:999px;font-weight:600;font-size:15px;color:var(--ink-soft);transition:.2s}
+nav a:hover{background:#efe4d3}
+nav a.nav-ic{display:flex;align-items:center;font-size:20px;line-height:1;padding:6px 16px}
+nav a.on{background:linear-gradient(135deg,var(--pink),var(--purple));color:#fff;box-shadow:0 4px 14px #9c6f6040}
+.gear{position:fixed;right:14px;bottom:14px;z-index:30;border:none;background:#fff;border-radius:999px;padding:10px 16px;
+  box-shadow:0 6px 20px #7a615030;color:var(--purple-d);font-weight:700;cursor:pointer;display:none}
+
+main{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:28px 18px 90px}
+section.view{display:none;animation:fade .6s ease}
+section.view.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+.card{background:var(--card);border:1px solid #fff;border-radius:26px;box-shadow:0 10px 40px #7a615022;padding:26px}
+.status{text-align:center;font-size:13px;color:var(--ink-soft);min-height:18px;margin-bottom:6px}
+
+/* home */
+.hero{text-align:center}
+.hero svg.couple{width:min(380px,90%);height:auto;display:block;margin:0 auto -6px}
+.bob{animation:bob 3.2s ease-in-out infinite}
+.bob2{animation:bob 3.2s ease-in-out infinite .9s}
+@keyframes bob{50%{transform:translateY(-6px)}}
+.beat{transform-origin:190px 92px;animation:beat 1.3s ease-in-out infinite}
+@keyframes beat{0%,100%{transform:scale(1)}15%{transform:scale(1.15)}30%{transform:scale(.97)}45%{transform:scale(1.1)}}
+.hero h1{font-size:clamp(38px,7.5vw,68px);margin:10px 0 0;background:linear-gradient(135deg,var(--pink-d),var(--purple-d));
+  -webkit-background-clip:text;background-clip:text;color:transparent;line-height:1.1}
+.names{font-size:clamp(18px,3.6vw,24px);font-weight:600;color:var(--purple-d);margin:8px 0 6px}
+.names .h{color:var(--pink)}
+.counter{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:620px;margin:0 auto}
+.counter div{background:#fffaf3;border-radius:20px;padding:16px 6px;box-shadow:0 6px 18px #9c6f601f}
+.counter b{display:block;font-size:clamp(26px,6vw,40px);color:var(--pink-d);font-variant-numeric:tabular-nums}
+.counter small{font-size:13px;color:var(--ink-soft);font-weight:600}
+.since{margin-top:12px;color:var(--ink-soft);font-size:15px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin:34px auto 0;max-width:660px}
+.tile{display:block;text-decoration:none;text-align:left;cursor:pointer;transition:.25s}
+.tile:hover{transform:translateY(-4px)}
+.tile .ic{font-size:30px}
+.tile-c{text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:26px 22px}
+.tile.tile-c .ic{font-size:44px;line-height:1}
+.tile.tile-c p{font-size:22px;line-height:1.3;margin:0;font-weight:700;letter-spacing:-.01em;color:var(--purple-d)}
+.tile h3{font-size:22px;margin:6px 0 4px;color:var(--purple-d)}
+.tile p{margin:0;color:var(--ink-soft);font-size:15px;line-height:1.5}
+
+/* page headings */
+.ph{text-align:center;margin-bottom:22px}
+.ph h2{font-size:clamp(32px,6vw,46px);margin:0;color:var(--pink-d)}
+.ph p{margin:4px 0 0;color:var(--ink-soft)}
+
+/* envelope */
+.env-wrap{display:flex;flex-direction:column;align-items:center;gap:14px;padding:20px 0}
+.envelope{position:relative;width:min(340px,86vw);aspect-ratio:3/2;cursor:pointer;border:none;background:none;padding:0;transition:transform .3s}
+.envelope:hover{transform:scale(1.03) rotate(-1deg)}
+.envelope .body{position:absolute;inset:0;border-radius:14px;background:linear-gradient(135deg,#eadcc8,#d6c2a8);box-shadow:0 14px 40px #7a615038}
+.envelope .flap{position:absolute;left:0;right:0;top:0;height:62%;clip-path:polygon(0 0,100% 0,50% 100%);background:linear-gradient(180deg,#dfcab0,#cbb193);border-radius:14px 14px 0 0}
+.envelope .seal{position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);width:60px;height:60px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#e0574a,#b3261e 70%);display:grid;place-items:center;font-size:26px;box-shadow:0 4px 12px #0002}
+.hint{color:var(--ink-soft);font-size:15px}
+.paper{display:none;max-width:700px;margin:0 auto;background:var(--cream);border-radius:20px;padding:34px 30px 30px;
+  box-shadow:0 14px 50px #7a61502e;position:relative;
+  background-image:repeating-linear-gradient(transparent 0 27px,#ece1d0 27px 28px);background-position:0 70px}
+.paper.on{display:block;animation:unfold .7s ease}
+@keyframes unfold{from{opacity:0;transform:translateY(30px) scale(.96)}to{opacity:1;transform:none}}
+.paper .to{font-family:"Noto Serif",Georgia,serif;font-weight:600;letter-spacing:-.01em;font-size:22px;color:var(--purple-d);margin:0 0 10px}
+.paper .txt{white-space:pre-wrap;font-size:17px;line-height:28px;min-height:120px;word-wrap:break-word}
+.paper .sign{text-align:right;font-family:"Noto Serif",Georgia,serif;font-weight:600;letter-spacing:-.01em;font-size:20px;font-style:italic;color:var(--pink-d);margin-top:16px}
+.paper .stamp{position:absolute;top:18px;right:20px;width:62px}
+
+/* forms */
+label{display:block;font-weight:700;margin:16px 0 6px;color:var(--purple-d)}
+textarea,input[type=text],input[type=date]{width:100%;border:2px solid var(--line);border-radius:16px;padding:12px 14px;font:inherit;font-size:16px;
+  color:var(--ink);background:#fff;outline:none;transition:.2s;resize:vertical}
+textarea:focus,input:focus{border-color:var(--pink)}
+.btn{border:none;cursor:pointer;border-radius:999px;padding:12px 24px;font-weight:700;font-size:16px;color:#fff;
+  background:linear-gradient(135deg,var(--pink),var(--purple));box-shadow:0 6px 18px #9c6f6040;transition:.2s}
+.btn:hover{transform:translateY(-2px)}
+.btn:disabled{opacity:.6;cursor:default;transform:none}
+.btn.ghost{background:#fff;color:var(--purple-d);box-shadow:0 4px 14px #7a615028}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:18px}
+.msg{font-size:14px;color:var(--pink-d);font-weight:600}
+.hearts{display:flex;gap:6px}
+.hearts button{border:none;background:none;font-size:34px;color:var(--pink-d);line-height:1;cursor:pointer;filter:grayscale(1);opacity:.45;transition:.15s;padding:0}
+.hearts button.on{filter:none;opacity:1;transform:scale(1.08)}
+
+/* replies */
+.replies{display:grid;gap:16px;margin-top:26px}
+.reply{background:#fffaf3;border-radius:22px;padding:22px;box-shadow:0 8px 26px #9c6f601f;border-left:6px solid var(--pink)}
+.reply .meta{display:flex;justify-content:space-between;align-items:center;gap:8px;color:var(--ink-soft);font-size:13px;margin-bottom:6px}
+.reply .who{font-family:"Noto Serif",Georgia,serif;font-weight:600;letter-spacing:-.01em;font-size:18px;color:var(--purple-d)}
+.reply h4{margin:12px 0 2px;font-size:14px;color:var(--pink-d);text-transform:uppercase;letter-spacing:.5px}
+.reply p{margin:0;white-space:pre-wrap;line-height:1.6}
+.reply .del{border:none;background:none;color:var(--ink-soft);cursor:pointer;font-size:13px;text-decoration:underline}
+.empty{text-align:center;color:var(--ink-soft);padding:20px}
+
+/* memories */
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+.frame{background:#fffdf8;padding:12px 12px 40px;border-radius:6px;box-shadow:0 10px 26px #7a615028;transition:.3s;position:relative}
+.frame:nth-child(odd){transform:rotate(-2deg)} .frame:nth-child(even){transform:rotate(2deg)}
+.frame:hover{transform:rotate(0) scale(1.04);z-index:2}
+.frame .ph-img{aspect-ratio:1;border-radius:4px;background:linear-gradient(135deg,#f4ece0,#e8ddcc);display:grid;place-items:center;color:var(--ink-soft);font-size:14px;text-align:center}
+.frame .cap{position:absolute;left:0;right:0;bottom:10px;text-align:center;font-family:"Noto Serif",Georgia,serif;font-weight:600;letter-spacing:-.01em;font-size:14px;color:var(--purple-d)}
+.note{text-align:center;margin:0 auto 24px;max-width:520px;color:var(--ink-soft)}
+
+/* modal */
+.modal{position:fixed;inset:0;background:#4f3f3366;z-index:50;display:none;align-items:center;justify-content:center;padding:16px}
+.modal.on{display:flex}
+.modal .card{width:min(460px,100%);background:#fff}
+.modal h3{margin:0;font-size:26px;color:var(--pink-d)}
+
+@media (max-width:560px){
+  .counter{grid-template-columns:repeat(2,1fr)}
+  .paper{padding:28px 18px}
+  nav a{padding:7px 11px;font-size:14px}
+}
+</style>
+</head>
+<body>
+<div class="sky" id="sky"></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+ <defs>
+  <symbol id="s-hog" viewBox="0 0 100 100">
+   <path d="M10 80 Q4 40 40 27 Q72 18 82 56 L80 82 Z" fill="#8a5a44"/>
+   <path d="M12 60 l-10 -4 l10 -7 z M18 42 l-9 -10 l13 0 z M30 30 l-3 -13 l11 7 z M46 24 l5 -13 l6 12 z M62 26 l12 -8 l-1 13 z M74 38 l13 -2 l-7 11 z" fill="#8a5a44"/>
+   <path d="M22 66 l-9 -2 l7 -6 z M30 48 l-7 -7 l10 0 z M44 36 l0 -10 l8 6 z M60 38 l7 -8 l1 10 z" fill="#a87458"/>
+   <path d="M46 84 Q42 54 66 47 Q91 43 93 67 Q94 84 78 85 Z" fill="#f6e2cc"/>
+   <circle cx="91" cy="63" r="4.5" fill="#4f3f33"/>
+   <circle cx="72" cy="59" r="3.4" fill="#4f3f33"/><circle cx="73" cy="58" r="1.1" fill="#fff"/>
+   <circle cx="68" cy="70" r="6" fill="#f0b4a6" opacity=".8"/>
+   <path d="M78 71 q4 4 8 0" stroke="#4f3f33" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+   <ellipse cx="56" cy="86" rx="8" ry="4" fill="#7a4d39"/><ellipse cx="78" cy="86" rx="8" ry="4" fill="#7a4d39"/>
+  </symbol>
+  <symbol id="s-mouse" viewBox="0 0 100 100">
+   <circle cx="26" cy="30" r="19" fill="#cfc6bb"/><circle cx="26" cy="30" r="12" fill="#f1cbbf"/>
+   <circle cx="74" cy="30" r="19" fill="#cfc6bb"/><circle cx="74" cy="30" r="12" fill="#f1cbbf"/>
+   <ellipse cx="50" cy="60" rx="32" ry="28" fill="#ddd5ca"/>
+   <circle cx="39" cy="56" r="3.8" fill="#4f3f33"/><circle cx="40" cy="55" r="1.2" fill="#fff"/>
+   <circle cx="61" cy="56" r="3.8" fill="#4f3f33"/><circle cx="62" cy="55" r="1.2" fill="#fff"/>
+   <circle cx="31" cy="67" r="6" fill="#f0b4a6" opacity=".8"/><circle cx="69" cy="67" r="6" fill="#f0b4a6" opacity=".8"/>
+   <ellipse cx="50" cy="65" rx="4" ry="3.2" fill="#d99a8c"/>
+   <path d="M45 71 q5 4 10 0" stroke="#4f3f33" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+   <path d="M36 66 l-16 -3 M36 70 l-16 3 M64 66 l16 -3 M64 70 l16 3" stroke="#a99d90" stroke-width="1.3" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="s-hogheart" viewBox="0 0 100 100">
+   <use href="#s-hog" x="0" y="8" width="92" height="92"/>
+   <path d="M28 30 C14 20 18 6 28 12 C38 6 42 20 28 30 Z" fill="#d9958a"/>
+  </symbol>
+  <symbol id="s-mousecheese" viewBox="0 0 100 100">
+   <use href="#s-mouse" x="0" y="0" width="86" height="86"/>
+   <path d="M58 92 L96 92 L96 70 Z" fill="#f2d48a"/><circle cx="86" cy="84" r="3" fill="#e2bd66"/><circle cx="76" cy="88" r="2" fill="#e2bd66"/>
+  </symbol>
+  <symbol id="s-heart" viewBox="0 0 100 100"><path d="M50 88 C10 60 14 18 50 34 C86 18 90 60 50 88 Z" fill="#d9958a"/><path d="M32 40 q-6 8 -2 16" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round" opacity=".6"/></symbol>
+  <symbol id="s-flower" viewBox="0 0 100 100">
+   <path d="M58 4 L52 30" stroke="#9c6f60" stroke-width="5" stroke-linecap="round"/>
+   <path d="M24 26 H76 L70 92 Q69 96 64 96 H36 Q31 96 30 92 Z" fill="#f6f2ea" stroke="#d8ccbb" stroke-width="2"/>
+   <path d="M27 50 H73 L69.5 92 Q69 95 64 95 H36 Q31 95 30.5 92 Z" fill="#a9c27a"/>
+   <path d="M27 50 Q38 44 50 50 T73 50 L72 60 Q60 66 50 60 T28 60 Z" fill="#c9d9a3"/>
+   <path d="M26 34 H74 L73 46 H27 Z" fill="#fffdf8" opacity=".9"/>
+   <rect x="20" y="20" width="60" height="9" rx="4.5" fill="#efe6d8" stroke="#d8ccbb" stroke-width="2"/>
+   <circle cx="42" cy="74" r="3" fill="#4f3f33"/><circle cx="58" cy="74" r="3" fill="#4f3f33"/>
+   <path d="M46 80 q4 3.5 8 0" stroke="#4f3f33" stroke-width="2" fill="none" stroke-linecap="round"/>
+   <circle cx="37" cy="80" r="4" fill="#f0b4a6" opacity=".8"/><circle cx="63" cy="80" r="4" fill="#f0b4a6" opacity=".8"/>
+   <path d="M33 56 v26" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".45"/>
+  </symbol>
+ </defs>
+</svg>
+<div class="stickers" id="stickers"></div>
+
+<nav>
+  <a href="#home" data-v="home">ILYSM</a>
+  <a href="#thu" data-v="thu" id="navThu" aria-label="Thư" class="nav-ic">🤍</a>
+  <a href="#hoi-am" data-v="hoi-am" id="navReply" aria-label="Hồi âm" class="nav-ic"><svg width="30" height="23" viewBox="0 0 58 44" aria-label="Bức thư"><rect x="2" y="4" width="54" height="36" rx="4" fill="#fffaf3" stroke="#b9a48c" stroke-width="2"/><path d="M3 6 L29 26 L55 6" fill="none" stroke="#b9a48c" stroke-width="2" stroke-linejoin="round"/><path d="M3 38 L22 21 M55 38 L36 21" stroke="#d8c8b3" stroke-width="1.6"/><circle cx="29" cy="25" r="8.5" fill="#c0392b"/><circle cx="29" cy="25" r="5.5" fill="none" stroke="#e0675a" stroke-width="1.4"/><path d="M29 29 c-4 -2.6 -3.6 -6 0 -4.6 c3.6 -1.4 4 2 0 4.6z" fill="#8f2419"/></svg></a>
+</nav>
+
+<main>
+
+  <!-- HOME -->
+  <section class="view" id="v-home">
+    <div class="hero">
+      <svg class="couple" viewBox="0 0 380 230" aria-label="Một chú nhím và một chú chuột cùng ôm trái tim">
+        <defs>
+          <linearGradient id="heartG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#dba69c"/><stop offset="1" stop-color="#b39b82"/></linearGradient>
+          <radialGradient id="cheek"><stop offset="0" stop-color="#f0b4a6"/><stop offset="1" stop-color="#f0b4a600"/></radialGradient>
+        </defs>
+        <ellipse cx="190" cy="214" rx="150" ry="10" fill="#b8a48c40"/>
+        <!-- hedgehog -->
+        <g class="bob">
+          <g fill="#8a5a44">
+            <path d="M40 190 Q30 120 95 92 Q150 76 165 140 L160 192 Z"/>
+            <path d="M44 150 l-22 -6 l20 -10 z M52 122 l-18 -16 l24 -2 z M72 100 l-6 -24 l20 12 z M100 88 l8 -24 l10 22 z M128 92 l20 -16 l-2 24 z M150 110 l24 -6 l-12 20 z"/>
+          </g>
+          <g fill="#a87458">
+            <path d="M58 172 l-18 -2 l14 -12 z M66 140 l-14 -12 l18 -2 z M86 114 l-2 -18 l14 10 z M114 106 l10 -14 l4 18 z M140 120 l18 -6 l-8 16 z"/>
+          </g>
+          <path d="M100 196 Q92 140 140 128 Q186 122 190 168 Q192 198 160 200 Z" fill="#fbe6d4"/>
+          <ellipse cx="185" cy="160" rx="10" ry="8" fill="#4f3f33"/>
+          <ellipse cx="183" cy="157" rx="3" ry="2" fill="#fff"/>
+          <circle cx="152" cy="150" r="5.5" fill="#4f3f33"/><circle cx="154" cy="148" r="1.8" fill="#fff"/>
+          <circle cx="146" cy="168" r="11" fill="url(#cheek)"/>
+          <path d="M158 172 q8 7 16 0" stroke="#4f3f33" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+          <ellipse cx="122" cy="200" rx="14" ry="7" fill="#7a4d39"/>
+          <ellipse cx="160" cy="202" rx="13" ry="6.5" fill="#7a4d39"/>
+        </g>
+        <!-- mouse -->
+        <g class="bob2">
+          <path d="M318 196 q46 -4 40 -40 q-4 -22 -22 -18" stroke="#c9bfb3" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <circle cx="248" cy="96" r="30" fill="#cfc6bb"/><circle cx="248" cy="96" r="19" fill="#f1cbbf"/>
+          <circle cx="318" cy="96" r="30" fill="#cfc6bb"/><circle cx="318" cy="96" r="19" fill="#f1cbbf"/>
+          <path d="M228 200 Q222 132 283 124 Q344 132 338 200 Z" fill="#ddd5ca"/>
+          <ellipse cx="283" cy="186" rx="34" ry="20" fill="#f2ede5"/>
+          <circle cx="266" cy="152" r="5.5" fill="#4f3f33"/><circle cx="268" cy="150" r="1.8" fill="#fff"/>
+          <circle cx="300" cy="152" r="5.5" fill="#4f3f33"/><circle cx="302" cy="150" r="1.8" fill="#fff"/>
+          <circle cx="256" cy="168" r="10" fill="url(#cheek)"/><circle cx="310" cy="168" r="10" fill="url(#cheek)"/>
+          <ellipse cx="283" cy="164" rx="5" ry="4" fill="#cf9384"/>
+          <path d="M276 172 q7 6 14 0" stroke="#4f3f33" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+          <path d="M262 166 l-22 -4 M262 171 l-22 3 M304 166 l22 -4 M304 171 l22 3" stroke="#a99d90" stroke-width="1.6" stroke-linecap="round"/>
+          <ellipse cx="258" cy="203" rx="14" ry="6.5" fill="#c3b9ad"/>
+          <ellipse cx="308" cy="203" rx="14" ry="6.5" fill="#c3b9ad"/>
+        </g>
+        <!-- heart -->
+        <g class="beat">
+          <path d="M190 120 C150 92 160 56 190 70 C220 56 230 92 190 120 Z" fill="url(#heartG)"/>
+          <path d="M172 76 q-6 6 -4 14" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" opacity=".7"/>
+        </g>
+        <text x="96" y="58" font-size="16" fill="#cf9384">♥</text>
+        <text x="300" y="40" font-size="13" fill="#b39b82">♥</text>
+        <text x="40" y="88" font-size="11" fill="#b39b82">✦</text>
+        <text x="350" y="120" font-size="12" fill="#cf9384">✦</text>
+      </svg>
+      <h1>Happy 2nd Anniversary</h1>
+      <div class="names script"><span id="nMe">Chồng béo</span> <span class="h">♥</span> <span id="nYou">Vợ thúi</span></div>
+
+      <div class="tiles">
+        <a class="card tile tile-c" href="#thu"><div class="ic">🤍</div><p>For my forever and ever</p></a>
+        <a class="card tile tile-c" href="#hoi-am"><svg class="ic" width="66" height="50" viewBox="0 0 58 44" aria-label="Bức thư"><rect x="2" y="4" width="54" height="36" rx="4" fill="#fffaf3" stroke="#b9a48c" stroke-width="2"/><path d="M3 6 L29 26 L55 6" fill="none" stroke="#b9a48c" stroke-width="2" stroke-linejoin="round"/><path d="M3 38 L22 21 M55 38 L36 21" stroke="#d8c8b3" stroke-width="1.6"/><circle cx="29" cy="25" r="8.5" fill="#c0392b"/><circle cx="29" cy="25" r="5.5" fill="none" stroke="#e0675a" stroke-width="1.4"/><path d="M29 29 c-4 -2.6 -3.6 -6 0 -4.6 c3.6 -1.4 4 2 0 4.6z" fill="#8f2419"/></svg><p>Gimme some feedback lahhh</p></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- LETTER -->
+  <section class="view" id="v-thu">
+    <div class="ph"><svg class="deco" style="left:4%;transform:rotate(-12deg)" viewBox="0 0 100 100"><use href="#s-hogheart"/></svg><svg class="deco" style="right:4%;transform:rotate(10deg)" viewBox="0 0 100 100"><use href="#s-mouse"/></svg><h2>Click into my heart</h2></div>
+    <div class="env-wrap" id="envWrap">
+      <button class="envelope" id="envelope" aria-label="Mở thư">
+        <div class="body"></div><div class="flap"></div><div class="seal">🤍</div>
+      </button>
+    </div>
+    <div class="paper" id="paper">
+      <svg class="stamp" viewBox="0 0 60 60"><rect x="3" y="3" width="54" height="54" rx="4" fill="#f4ece0" stroke="#cf9384" stroke-width="2" stroke-dasharray="4 3"/><path d="M30 44 C14 32 18 18 30 24 C42 18 46 32 30 44 Z" fill="#9c6f60"/></svg>
+      <div class="txt" id="letterTxt"></div>
+    </div>
+  </section>
+
+  <!-- REPLY -->
+  <section class="view" id="v-hoi-am">
+    <div class="ph"><svg class="deco" style="left:4%;transform:rotate(-8deg)" viewBox="0 0 100 100"><use href="#s-mousecheese"/></svg><svg class="deco" style="right:4%;transform:rotate(12deg)" viewBox="0 0 100 100"><use href="#s-hog"/></svg><h2>Có gì mún nói hong</h2></div>
+    <div class="card" id="replyFormCard">
+      <form id="replyForm">
+        <textarea id="rMsg" rows="10" aria-label="Lời nhắn"></textarea>
+        <div class="row"><button class="btn" type="submit" id="sendReply">Send it to chồng béoo 💌</button><span class="msg" id="replyMsg"></span></div>
+      </form>
+    </div>
+    <div class="card empty" id="replyLocked" style="display:none"></div>
+    <div class="replies" id="replies"></div>
+  </section>
+</main>
+
+
+
+<script>
+const $ = s => document.querySelector(s);
+const MY = "Chồng béo", YOU = "Vợ thúi";
+const API = "https://script.google.com/macros/s/AKfycbw1R-lzAcgnqufNwPELEOB_gjDUC8bJVu3XHHsmugHzWK5upLzRll6-mLy3dY6bKt-K/exec";
+/* floating hearts */
+(() => {
+  const sky = $("#sky"), sym = ["♥", "♡", "♥", "♡"];
+  for (let i = 0; i < 18; i++) {
+    const s = document.createElement("span");
+    s.textContent = sym[i % sym.length];
+    s.style.left = Math.random() * 100 + "%";
+    s.style.fontSize = 12 + Math.random() * 18 + "px";
+    s.style.animationDuration = 12 + Math.random() * 14 + "s";
+    s.style.animationDelay = -Math.random() * 20 + "s";
+    if (i % 3 === 0) s.style.color = "#b39b82";
+    sky.appendChild(s);
+  }
+})();
+
+/* stickers scattered around */
+(() => {
+  const box = $("#stickers");
+  // [symbol, left %, top %, size px, rotation, far(hide on phone)]
+  const list = [
+    ["s-hog", 2, 12, 86, -14, 0], ["s-mouse", 90, 9, 78, 12, 0], ["s-heart", 12, 4, 34, 18, 1],
+    ["s-flower", 80, 26, 62, -10, 1], ["s-mousecheese", 1, 40, 92, 8, 1], ["s-hogheart", 89, 46, 96, -8, 1],
+    ["s-heart", 94, 33, 30, -20, 1], ["s-flower", 6, 63, 60, 15, 1], ["s-mouse", 4, 82, 80, -10, 0],
+    ["s-hog", 87, 78, 90, 10, 0], ["s-heart", 16, 92, 32, -12, 1], ["s-flower", 78, 92, 58, 20, 1],
+    ["s-hogheart", 45, 95, 70, 4, 1], ["s-heart", 60, 3, 26, 10, 1]
+  ];
+  list.forEach(([id, l, t, sz, r, far], i) => {
+    const ns = "http://www.w3.org/2000/svg";
+    const svg = document.createElementNS(ns, "svg");
+    svg.setAttribute("viewBox", "0 0 100 100");
+    svg.setAttribute("class", "stk" + (far ? " far" : ""));
+    const use = document.createElementNS(ns, "use"); use.setAttribute("href", "#" + id);
+    svg.appendChild(use);
+    Object.assign(svg.style, { left: `calc(${l}% - ${l > 50 ? sz * 0.4 : 0}px)`, top: t + "%", width: sz + "px", height: sz + "px",
+      transform: `rotate(${r}deg)`, animationDelay: (-i * 0.7) + "s" });
+    box.appendChild(svg);
+  });
+})();
+
+/* routing */
+const VIEWS = ["home", "thu", "hoi-am"];
+function route() {
+  const v = VIEWS.includes(location.hash.slice(1)) ? location.hash.slice(1) : "home";
+  VIEWS.forEach(n => $("#v-" + n).classList.toggle("on", n === v));
+  document.querySelectorAll("nav a").forEach(a => a.classList.toggle("on", a.dataset.v === v));
+  window.scrollTo({ top: 0 });
+}
+window.addEventListener("hashchange", route);
+route();
+
+
+/* letter: read from letter.txt so it can be updated on its own */
+fetch("letter.txt", { cache: "no-store" }).then(r => r.ok ? r.text() : "").then(t => { $("#letterTxt").textContent = t.trim(); }).catch(() => {});
+$("#envelope").addEventListener("click", () => {
+  $("#envWrap").style.display = "none";
+  $("#paper").classList.add("on");
+  burst();
+});
+
+/* messages, stored in a Google Sheet */
+function say(t) { $("#replyMsg").textContent = t; }
+function renderReplies(list) {
+  const box = $("#replies"); box.innerHTML = "";
+  list.slice().reverse().forEach(d => {
+    if (!d || !d.message) return;
+    const card = document.createElement("div"); card.className = "reply";
+    const meta = document.createElement("div"); meta.className = "meta";
+    const who = document.createElement("span"); who.className = "who"; who.textContent = "Từ " + YOU + " ♥";
+    const when = document.createElement("span");
+    const dt = new Date(d.time);
+    when.textContent = isNaN(dt) ? "" : dt.toLocaleString("vi-VN", { dateStyle: "medium", timeStyle: "short" });
+    meta.append(who, when);
+    const p = document.createElement("p"); p.textContent = String(d.message);
+    card.append(meta, p);
+    box.appendChild(card);
+  });
+}
+async function loadReplies() {
+  try {
+    const r = await fetch(API, { cache: "no-store" });
+    const list = await r.json();
+    if (Array.isArray(list)) renderReplies(list);
+  } catch (e) { /* stay quiet; try again next time */ }
+}
+loadReplies();
+$("#replyForm").addEventListener("submit", async ev => {
+  ev.preventDefault();
+  const message = $("#rMsg").value.trim();
+  if (!message) return say("Viết gì đó trước đã nhé 🙂");
+  $("#sendReply").disabled = true; say("Đang gửi…");
+  try {
+    await fetch(API, { method: "POST", mode: "no-cors", body: new URLSearchParams({ message }) });
+    $("#replyForm").reset(); say("Đã gửi rồi! 💌"); burst();
+    setTimeout(loadReplies, 1500);
+  } catch (e) { say("Gửi chưa được, thử lại nhé."); }
+  $("#sendReply").disabled = false;
+});
+
+function burst() {
+  for (let i = 0; i < 22; i++) {
+    const s = document.createElement("span");
+    s.textContent = i % 2 ? "♥" : "♡";
+    Object.assign(s.style, { position: "fixed", left: "50%", top: "55%", fontSize: 14 + Math.random() * 16 + "px",
+      color: i % 3 ? "#cf9384" : "#b39b82", zIndex: 60, pointerEvents: "none", transition: "transform 1.4s cubic-bezier(.2,.7,.3,1), opacity 1.4s" });
+    document.body.appendChild(s);
+    const ang = Math.random() * Math.PI * 2, dist = 120 + Math.random() * 200;
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      s.style.transform = `translate(${Math.cos(ang) * dist}px, ${Math.sin(ang) * dist - 80}px) rotate(${Math.random() * 360}deg)`;
+      s.style.opacity = "0";
+    }));
+    setTimeout(() => s.remove(), 1500);
+  }
+}
+</script>
+</body>
+</html>
