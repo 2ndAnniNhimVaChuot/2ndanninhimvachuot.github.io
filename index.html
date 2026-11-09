@@ -35,7 +35,7 @@ a{color:inherit}
 #gNeedle{transition:transform .12s ease-out}
 .g-num{font-size:56px;font-weight:700;color:var(--pink-d);line-height:1;margin-top:-6px}
 .g-num small{font-size:24px;margin-left:2px}
-.g-label{font-size:22px;font-weight:700;color:var(--purple-d);margin-top:8px;min-height:30px}
+.g-label{font-size:24px;font-weight:700;color:var(--purple-d);margin-top:4px;min-height:30px}
 .g-hint{font-size:14px;color:var(--ink-soft);margin-top:6px}
 .row.center{justify-content:center}
 .g-last{margin-top:16px;color:var(--ink-soft);font-size:15px;min-height:20px}
@@ -324,7 +324,7 @@ textarea:focus,input:focus{border-color:var(--pink)}
   <section class="view" id="v-rate">
     <div class="ph"><svg class="deco" style="left:4%;transform:rotate(-10deg)" viewBox="0 0 100 100"><use href="#s-hogheart"/></svg><svg class="deco" style="right:4%;transform:rotate(10deg)" viewBox="0 0 100 100"><use href="#s-mousecheese"/></svg><h2>Rate ur partner</h2></div>
     <div class="card gauge-card">
-      <svg id="gauge" viewBox="-16 0 352 190" role="slider" aria-label="Mức độ hài lòng" aria-valuemin="0" aria-valuemax="100" tabindex="0">
+      <svg id="gauge" viewBox="0 20 320 170" role="slider" aria-label="Mức độ hài lòng" aria-valuemin="0" aria-valuemax="100" tabindex="0">
         <defs>
           <linearGradient id="gGrad" x1="0" y1="0" x2="1" y2="0">
             <stop offset="0" stop-color="#e9dccb"/><stop offset=".45" stop-color="#d9a39a"/><stop offset="1" stop-color="#c0392b"/>
@@ -332,13 +332,11 @@ textarea:focus,input:focus{border-color:var(--pink)}
         </defs>
         <path d="M30 165 A130 130 0 0 1 290 165" fill="none" stroke="#efe5d6" stroke-width="26" stroke-linecap="round"/>
         <path id="gVal" d="" fill="none" stroke="url(#gGrad)" stroke-width="26" stroke-linecap="round"/>
-        <g id="gTicks"></g>
         <g id="gNeedle" style="transform-origin:160px 165px">
           <path d="M160 165 L160 52" stroke="#4f3f33" stroke-width="5" stroke-linecap="round"/>
         </g>
         <circle cx="160" cy="165" r="13" fill="#4f3f33"/><circle cx="160" cy="165" r="5" fill="#fffaf3"/>
       </svg>
-      <div class="g-num"><span id="gNum">50</span><small>%</small></div>
       <div class="g-label" id="gLabel"></div>
       <div class="g-hint">Kéo hoặc chạm vào nửa vòng tròn để chấm điểm</div>
       <div class="row center"><button class="btn" id="sendRate">Submit 💯</button><span class="msg" id="rateMsg"></span></div>
@@ -455,24 +453,14 @@ function drawGauge() {
   const v = rateVal, [x, y] = pt(Math.max(v, 0.01));
   $("#gVal").setAttribute("d", v <= 0 ? "" : `M30 165 A130 130 0 0 1 ${x.toFixed(2)} ${y.toFixed(2)}`);
   $("#gNeedle").style.transform = `rotate(${(v / 100) * 180 - 90}deg)`;
-  $("#gNum").textContent = v;
   $("#gLabel").textContent = rateLabel(v);
   $("#gauge").setAttribute("aria-valuenow", v);
 }
 (() => {
-  const t = $("#gTicks"), ns = "http://www.w3.org/2000/svg";
-  [0, 25, 50, 75, 100].forEach(v => {
-    const a = Math.PI * (1 - v / 100);
-    const tx = CX + (R + 24) * Math.cos(a), ty = CY - (R + 24) * Math.sin(a);
-    const el = document.createElementNS(ns, "text");
-    el.setAttribute("x", tx); el.setAttribute("y", ty + 5); el.setAttribute("text-anchor", "middle");
-    el.setAttribute("font-size", "13"); el.setAttribute("fill", "#8a7766"); el.textContent = v;
-    t.appendChild(el);
-  });
   const g = $("#gauge");
   function fromEvent(e) {
     const r = g.getBoundingClientRect();
-    const x = (e.clientX - r.left) * (352 / r.width) - 16, y = (e.clientY - r.top) * (190 / r.height);
+    const x = (e.clientX - r.left) * (320 / r.width), y = (e.clientY - r.top) * (170 / r.height) + 20;
     let ang = Math.atan2(CY - y, x - CX);
     if (ang < 0) ang = x < CX ? Math.PI : 0;
     rateVal = Math.round(100 * (1 - ang / Math.PI));
@@ -494,7 +482,7 @@ function showLastRate(rows) {
   if (!last) { $("#gLast").textContent = ""; return; }
   const n = parseInt(last.message.slice(RATE_TAG.length), 10);
   const dt = new Date(last.time);
-  $("#gLast").textContent = YOU + " đã chấm " + n + "% ♥" + (isNaN(dt) ? "" : " · " + dt.toLocaleString("vi-VN", { dateStyle: "medium", timeStyle: "short" }));
+  $("#gLast").textContent = YOU + " đã chấm: " + rateLabel(n) + (isNaN(dt) ? "" : " · " + dt.toLocaleString("vi-VN", { dateStyle: "medium", timeStyle: "short" }));
 }
 $("#sendRate").addEventListener("click", async () => {
   $("#sendRate").disabled = true; $("#rateMsg").textContent = "Đang gửi…";
