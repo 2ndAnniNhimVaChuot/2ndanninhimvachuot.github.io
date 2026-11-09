@@ -29,6 +29,19 @@ a{color:inherit}
 .sky span{position:absolute;bottom:-40px;color:var(--pink);opacity:.35;animation:rise linear infinite}
 @keyframes rise{to{transform:translateY(-115vh) rotate(25deg);opacity:0}}
 
+/* rating gauge */
+.gauge-card{max-width:560px;margin:0 auto;text-align:center}
+#gauge{width:100%;max-width:440px;display:block;margin:0 auto;touch-action:none;cursor:pointer;outline:none}
+#gNeedle{transition:transform .12s ease-out}
+.g-num{font-size:56px;font-weight:700;color:var(--pink-d);line-height:1;margin-top:-6px}
+.g-num small{font-size:24px;margin-left:2px}
+.g-label{font-size:22px;font-weight:700;color:var(--purple-d);margin-top:8px;min-height:30px}
+.g-hint{font-size:14px;color:var(--ink-soft);margin-top:6px}
+.row.center{justify-content:center}
+.g-last{margin-top:16px;color:var(--ink-soft);font-size:15px;min-height:20px}
+.next-row{display:flex;justify-content:flex-end;margin-top:18px}
+.next-row .btn{text-decoration:none}
+
 /* paper grain on cards */
 .card,.paper,.reply,.frame,.counter div,nav{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .42 0 0 0 0 .33 0 0 0 .28 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E") !important;background-repeat:repeat}
 .paper{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .42 0 0 0 0 .33 0 0 0 .28 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),repeating-linear-gradient(transparent 0 27px,#ece1d0 27px 28px) !important;background-position:0 0,0 6px !important}
@@ -212,6 +225,7 @@ textarea:focus,input:focus{border-color:var(--pink)}
   <a href="#home" data-v="home">ILYSM</a>
   <a href="#thu" data-v="thu" id="navThu" aria-label="Thư" class="nav-ic">🤍</a>
   <a href="#hoi-am" data-v="hoi-am" id="navReply" aria-label="Hồi âm" class="nav-ic"><svg width="30" height="23" viewBox="0 0 58 44" aria-label="Bức thư"><rect x="2" y="4" width="54" height="36" rx="4" fill="#fffaf3" stroke="#b9a48c" stroke-width="2"/><path d="M3 6 L29 26 L55 6" fill="none" stroke="#b9a48c" stroke-width="2" stroke-linejoin="round"/><path d="M3 38 L22 21 M55 38 L36 21" stroke="#d8c8b3" stroke-width="1.6"/><circle cx="29" cy="25" r="8.5" fill="#c0392b"/><circle cx="29" cy="25" r="5.5" fill="none" stroke="#e0675a" stroke-width="1.4"/><path d="M29 29 c-4 -2.6 -3.6 -6 0 -4.6 c3.6 -1.4 4 2 0 4.6z" fill="#8f2419"/></svg></a>
+  <a href="#rate" data-v="rate" aria-label="Rate ur partner" class="nav-ic"><svg width="30" height="20" viewBox="0 0 60 38" aria-hidden="true"><path d="M6 32 A24 24 0 0 1 54 32" fill="none" stroke="#e6d9c6" stroke-width="7" stroke-linecap="round"/><path d="M6 32 A24 24 0 0 1 44 13" fill="none" stroke="#c0392b" stroke-width="7" stroke-linecap="round"/><path d="M30 32 L44 16" stroke="#4f3f33" stroke-width="3" stroke-linecap="round"/><circle cx="30" cy="32" r="4" fill="#4f3f33"/></svg></a>
 </nav>
 
 <main>
@@ -304,6 +318,32 @@ textarea:focus,input:focus{border-color:var(--pink)}
     </div>
     <div class="card empty" id="replyLocked" style="display:none"></div>
     <div class="replies" id="replies"></div>
+    <div class="next-row"><a class="btn ghost" href="#rate">Next ›</a></div>
+  </section>
+  <!-- RATE -->
+  <section class="view" id="v-rate">
+    <div class="ph"><svg class="deco" style="left:4%;transform:rotate(-10deg)" viewBox="0 0 100 100"><use href="#s-hogheart"/></svg><svg class="deco" style="right:4%;transform:rotate(10deg)" viewBox="0 0 100 100"><use href="#s-mousecheese"/></svg><h2>Rate ur partner</h2></div>
+    <div class="card gauge-card">
+      <svg id="gauge" viewBox="-16 0 352 190" role="slider" aria-label="Mức độ hài lòng" aria-valuemin="0" aria-valuemax="100" tabindex="0">
+        <defs>
+          <linearGradient id="gGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#e9dccb"/><stop offset=".45" stop-color="#d9a39a"/><stop offset="1" stop-color="#c0392b"/>
+          </linearGradient>
+        </defs>
+        <path d="M30 165 A130 130 0 0 1 290 165" fill="none" stroke="#efe5d6" stroke-width="26" stroke-linecap="round"/>
+        <path id="gVal" d="" fill="none" stroke="url(#gGrad)" stroke-width="26" stroke-linecap="round"/>
+        <g id="gTicks"></g>
+        <g id="gNeedle" style="transform-origin:160px 165px">
+          <path d="M160 165 L160 52" stroke="#4f3f33" stroke-width="5" stroke-linecap="round"/>
+        </g>
+        <circle cx="160" cy="165" r="13" fill="#4f3f33"/><circle cx="160" cy="165" r="5" fill="#fffaf3"/>
+      </svg>
+      <div class="g-num"><span id="gNum">50</span><small>%</small></div>
+      <div class="g-label" id="gLabel"></div>
+      <div class="g-hint">Kéo hoặc chạm vào nửa vòng tròn để chấm điểm</div>
+      <div class="row center"><button class="btn" id="sendRate">Submit 💯</button><span class="msg" id="rateMsg"></span></div>
+      <div class="g-last" id="gLast"></div>
+    </div>
   </section>
 </main>
 
@@ -353,7 +393,7 @@ const API = "https://script.google.com/macros/s/AKfycbw1R-lzAcgnqufNwPELEOB_gjDU
 })();
 
 /* routing */
-const VIEWS = ["home", "thu", "hoi-am"];
+const VIEWS = ["home", "thu", "hoi-am", "rate"];
 function route() {
   const v = VIEWS.includes(location.hash.slice(1)) ? location.hash.slice(1) : "home";
   VIEWS.forEach(n => $("#v-" + n).classList.toggle("on", n === v));
@@ -394,9 +434,77 @@ async function loadReplies() {
   try {
     const r = await fetch(API, { cache: "no-store" });
     const list = await r.json();
-    if (Array.isArray(list)) renderReplies(list);
+    if (Array.isArray(list)) { renderReplies(list.filter(d => !isRate(d))); showLastRate(list.filter(isRate)); }
   } catch (e) { /* stay quiet; try again next time */ }
 }
+
+/* rating gauge: stored as a message row "__rating__:N" */
+const RATE_TAG = "__rating__:";
+function isRate(d) { return d && typeof d.message === "string" && d.message.indexOf(RATE_TAG) === 0; }
+let rateVal = 50;
+const CX = 160, CY = 165, R = 130;
+function pt(v) { const a = Math.PI * (1 - v / 100); return [CX + R * Math.cos(a), CY - R * Math.sin(a)]; }
+function rateLabel(v) {
+  if (v >= 100) return "Perfect chồng 💯";
+  if (v > 80) return "Yêu lắm luôn 🥰";
+  if (v > 50) return "Hài lòng nè 😊";
+  if (v > 20) return "Tạm ổn thôi 🙂";
+  return "Cần cố gắng nhiều 🥲";
+}
+function drawGauge() {
+  const v = rateVal, [x, y] = pt(Math.max(v, 0.01));
+  $("#gVal").setAttribute("d", v <= 0 ? "" : `M30 165 A130 130 0 0 1 ${x.toFixed(2)} ${y.toFixed(2)}`);
+  $("#gNeedle").style.transform = `rotate(${(v / 100) * 180 - 90}deg)`;
+  $("#gNum").textContent = v;
+  $("#gLabel").textContent = rateLabel(v);
+  $("#gauge").setAttribute("aria-valuenow", v);
+}
+(() => {
+  const t = $("#gTicks"), ns = "http://www.w3.org/2000/svg";
+  [0, 25, 50, 75, 100].forEach(v => {
+    const a = Math.PI * (1 - v / 100);
+    const tx = CX + (R + 24) * Math.cos(a), ty = CY - (R + 24) * Math.sin(a);
+    const el = document.createElementNS(ns, "text");
+    el.setAttribute("x", tx); el.setAttribute("y", ty + 5); el.setAttribute("text-anchor", "middle");
+    el.setAttribute("font-size", "13"); el.setAttribute("fill", "#8a7766"); el.textContent = v;
+    t.appendChild(el);
+  });
+  const g = $("#gauge");
+  function fromEvent(e) {
+    const r = g.getBoundingClientRect();
+    const x = (e.clientX - r.left) * (352 / r.width) - 16, y = (e.clientY - r.top) * (190 / r.height);
+    let ang = Math.atan2(CY - y, x - CX);
+    if (ang < 0) ang = x < CX ? Math.PI : 0;
+    rateVal = Math.round(100 * (1 - ang / Math.PI));
+    drawGauge();
+  }
+  let drag = false;
+  g.addEventListener("pointerdown", e => { drag = true; g.setPointerCapture(e.pointerId); fromEvent(e); });
+  g.addEventListener("pointermove", e => { if (drag) fromEvent(e); });
+  g.addEventListener("pointerup", () => { drag = false; });
+  g.addEventListener("pointercancel", () => { drag = false; });
+  g.addEventListener("keydown", e => {
+    if (e.key === "ArrowRight" || e.key === "ArrowUp") { rateVal = Math.min(100, rateVal + 1); drawGauge(); e.preventDefault(); }
+    if (e.key === "ArrowLeft" || e.key === "ArrowDown") { rateVal = Math.max(0, rateVal - 1); drawGauge(); e.preventDefault(); }
+  });
+  drawGauge();
+})();
+function showLastRate(rows) {
+  const last = rows[rows.length - 1];
+  if (!last) { $("#gLast").textContent = ""; return; }
+  const n = parseInt(last.message.slice(RATE_TAG.length), 10);
+  const dt = new Date(last.time);
+  $("#gLast").textContent = YOU + " đã chấm " + n + "% ♥" + (isNaN(dt) ? "" : " · " + dt.toLocaleString("vi-VN", { dateStyle: "medium", timeStyle: "short" }));
+}
+$("#sendRate").addEventListener("click", async () => {
+  $("#sendRate").disabled = true; $("#rateMsg").textContent = "Đang gửi…";
+  try {
+    await fetch(API, { method: "POST", mode: "no-cors", body: new URLSearchParams({ message: RATE_TAG + rateVal }) });
+    $("#rateMsg").textContent = "Đã chấm rồi! 💌"; burst();
+    setTimeout(loadReplies, 1500);
+  } catch (e) { $("#rateMsg").textContent = "Gửi chưa được, thử lại nhé."; }
+  $("#sendRate").disabled = false;
+});
 loadReplies();
 $("#replyForm").addEventListener("submit", async ev => {
   ev.preventDefault();
