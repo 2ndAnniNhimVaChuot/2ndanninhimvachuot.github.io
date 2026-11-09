@@ -339,7 +339,6 @@ textarea:focus,input:focus{border-color:var(--pink)}
       </svg>
       <div class="g-num"><span id="gNum">50</span><small>%</small></div>
       <div class="row center"><button class="btn" id="sendRate">Gửii</button><span class="msg" id="rateMsg"></span></div>
-      <div class="g-last" id="gLast"></div>
     </div>
   </section>
 </main>
@@ -431,7 +430,7 @@ async function loadReplies() {
   try {
     const r = await fetch(API, { cache: "no-store" });
     const list = await r.json();
-    if (Array.isArray(list)) { renderReplies(list.filter(d => !isRate(d))); showLastRate(list.filter(isRate)); }
+    if (Array.isArray(list)) { renderReplies(list.filter(d => !isRate(d))); }
   } catch (e) { /* stay quiet; try again next time */ }
 }
 
@@ -476,13 +475,6 @@ function drawGauge() {
   });
   drawGauge();
 })();
-function showLastRate(rows) {
-  const last = rows[rows.length - 1];
-  if (!last) { $("#gLast").textContent = ""; return; }
-  const n = parseInt(last.message.slice(RATE_TAG.length), 10);
-  const dt = new Date(last.time);
-  $("#gLast").textContent = YOU + " đã chấm: " + n + "%" + (isNaN(dt) ? "" : " · " + dt.toLocaleString("vi-VN", { dateStyle: "medium", timeStyle: "short" }));
-}
 $("#sendRate").addEventListener("click", async () => {
   $("#sendRate").disabled = true; $("#rateMsg").textContent = "Đang gửi…";
   try {
