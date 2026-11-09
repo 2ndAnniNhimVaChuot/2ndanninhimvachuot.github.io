@@ -338,7 +338,7 @@ textarea:focus,input:focus{border-color:var(--pink)}
         <circle cx="160" cy="165" r="13" fill="#4f3f33"/><circle cx="160" cy="165" r="5" fill="#fffaf3"/>
       </svg>
       <div class="g-num"><span id="gNum">50</span><small>%</small></div>
-      <div class="row center"><button class="btn" id="sendRate">Submit 💯</button><span class="msg" id="rateMsg"></span></div>
+      <div class="row center"><button class="btn" id="sendRate">Gửii</button><span class="msg" id="rateMsg"></span></div>
       <div class="g-last" id="gLast"></div>
     </div>
   </section>
@@ -487,7 +487,7 @@ $("#sendRate").addEventListener("click", async () => {
   $("#sendRate").disabled = true; $("#rateMsg").textContent = "Đang gửi…";
   try {
     await fetch(API, { method: "POST", mode: "no-cors", body: new URLSearchParams({ message: RATE_TAG + rateVal }) });
-    $("#rateMsg").textContent = "Đã chấm rồi! 💌"; burst();
+    $("#rateMsg").textContent = ""; burst();
     setTimeout(loadReplies, 1500);
   } catch (e) { $("#rateMsg").textContent = "Gửi chưa được, thử lại nhé."; }
   $("#sendRate").disabled = false;
