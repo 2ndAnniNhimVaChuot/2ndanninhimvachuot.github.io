@@ -33,7 +33,7 @@ a{color:inherit}
 .gauge-card{max-width:560px;margin:0 auto;text-align:center}
 #gauge{width:100%;max-width:440px;display:block;margin:0 auto;touch-action:none;cursor:pointer;outline:none}
 #gNeedle{transition:transform .12s ease-out}
-.g-num{font-size:56px;font-weight:700;color:var(--pink-d);line-height:1;margin-top:-6px}
+.g-num{font-size:60px;font-weight:700;color:#e8799f;line-height:1;margin-top:2px}
 .g-num small{font-size:24px;margin-left:2px}
 .g-label{font-size:24px;font-weight:700;color:var(--purple-d);margin-top:4px;min-height:30px}
 .g-hint{font-size:14px;color:var(--ink-soft);margin-top:6px}
@@ -337,8 +337,7 @@ textarea:focus,input:focus{border-color:var(--pink)}
         </g>
         <circle cx="160" cy="165" r="13" fill="#4f3f33"/><circle cx="160" cy="165" r="5" fill="#fffaf3"/>
       </svg>
-      <div class="g-label" id="gLabel"></div>
-      <div class="g-hint">Kéo hoặc chạm vào nửa vòng tròn để chấm điểm</div>
+      <div class="g-num"><span id="gNum">50</span><small>%</small></div>
       <div class="row center"><button class="btn" id="sendRate">Submit 💯</button><span class="msg" id="rateMsg"></span></div>
       <div class="g-last" id="gLast"></div>
     </div>
@@ -453,7 +452,7 @@ function drawGauge() {
   const v = rateVal, [x, y] = pt(Math.max(v, 0.01));
   $("#gVal").setAttribute("d", v <= 0 ? "" : `M30 165 A130 130 0 0 1 ${x.toFixed(2)} ${y.toFixed(2)}`);
   $("#gNeedle").style.transform = `rotate(${(v / 100) * 180 - 90}deg)`;
-  $("#gLabel").textContent = rateLabel(v);
+  $("#gNum").textContent = v;
   $("#gauge").setAttribute("aria-valuenow", v);
 }
 (() => {
@@ -482,7 +481,7 @@ function showLastRate(rows) {
   if (!last) { $("#gLast").textContent = ""; return; }
   const n = parseInt(last.message.slice(RATE_TAG.length), 10);
   const dt = new Date(last.time);
-  $("#gLast").textContent = YOU + " đã chấm: " + rateLabel(n) + (isNaN(dt) ? "" : " · " + dt.toLocaleString("vi-VN", { dateStyle: "medium", timeStyle: "short" }));
+  $("#gLast").textContent = YOU + " đã chấm: " + n + "%" + (isNaN(dt) ? "" : " · " + dt.toLocaleString("vi-VN", { dateStyle: "medium", timeStyle: "short" }));
 }
 $("#sendRate").addEventListener("click", async () => {
   $("#sendRate").disabled = true; $("#rateMsg").textContent = "Đang gửi…";
